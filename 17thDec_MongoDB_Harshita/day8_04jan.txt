@@ -1,0 +1,170 @@
+[
+  {$group: {
+    _id: "$gender"
+  }}
+]
+
+============================
+find the total no of male and female
+
+[
+  {$group: {
+    _id: "$gender",
+    genderCount: {
+      $sum: 1
+    }
+  }}
+]
+
+============================================
+find the total users group by their age 
+[
+  {$group: {
+    _id: "$age",
+    totalUsers:{
+      $sum:1
+    }
+  }}
+]
+
+=========================================================
+list all unique eye colors 
+[
+  {$group: {
+    _id: "$eyeColor"
+  }}
+]
+==================================================
+[
+  {$group: {
+    _id: "$eyeColor",
+    totalUsers:{
+      $sum:1
+    }
+  }}
+]
+
+================================================
+calculate the no of active and inactive users and their average age , grouped by gender 
+[
+  {
+    $group: {
+      _id: {"gender":"$gender","isActive":"$isActive"},
+      "Average Age": {$avg: "$age"},
+       totalUsers:{ $sum:1}
+    }
+  }
+]
+=========================================================
+calculate min age of users.
+[
+  {
+    $group: {
+      _id: null,
+      "minimum age": {
+        $min: "$age"
+      }
+    }
+  }
+]
+
+======================================================================
+[
+  {$group: {
+    _id: "$company.location.country",
+    totalUsers: {
+      $sum: 1
+    }
+  }}
+]
+
+====================================================================
+which country has the highest no of registered users??
+[
+  {$group: {
+    _id: "$company.location.country",
+    registeredUsers: { $sum: 1 }
+  }},
+  {$sort:{registeredUsers:-1}},
+  {$limit:1}  
+]
+
+=======================================
+list of the 1 most common favoriteFruit among users.
+[{
+  $group: {
+    _id: "$favoriteFruit",
+   count:{$sum:1}
+  }},
+ {$sort:{count:-1}},
+ {$limit:1}
+]
+
+============================================
+list name of users by their eye color.
+[
+  {$group: {
+    _id: "$eyeColor",
+    user:{$push:"$name"}
+  }}
+]
+
+[
+  {$group: {
+    _id: "$eyeColor",
+    user:{$addToSet:"$name"}
+  }}
+]
+======================================================
+$unwind - unwind array
+unwind the tags array and count the occurance of each tag.
+[
+ { $unwind: "$tags" },
+  {$group: {
+    _id: "$tags",
+    "count": {
+      $sum: 1
+    }
+  }}
+]
+
+-----------------------------------------------------
+First tag of each user.
+[
+  {$project: {
+	"firsttag":{$arrayElemAt:["$tags",0]}
+  }}
+]
+================================
+regular expression -
+
+name starts with A 
+[
+  {$match:{
+    name:{$regex:/^A/}
+  }},
+  {$project: {
+    name:1
+  }}
+]
+
+[
+  {$match:{
+    name:{$regex:/A/,$options:"i"}
+  }},
+  {$project: {
+    name:1
+  }}
+]
+====================================================
+[
+  {$match:{
+    "company.phone":{$regex: /\+1 \(940 4/}
+  }}
+]
+==================================
+date related 
+$lookup 
+replication 
+sharding  - horizontal and vertical 
+mongoose 

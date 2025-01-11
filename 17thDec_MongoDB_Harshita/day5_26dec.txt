@@ -1,0 +1,61 @@
+$all  - The $all operator selects the documents where the value of a field is an array that contains all the specified elements.
+db.products.find({tags:{$all:['beauty','eyeshadow']}},{category:1,tags:1,_id:0})
+
+
+$elemMatch - The $elemMatch operator matches documents that contain an array field with at least one element that matches all the specified query criteria.
+
+
+update - 
+updateOne 
+	db.products.updateOne({id:3},{$set:{price:20.00}})
+	db.products.updateOne({id:3},{$set:{price:20.20,rating:4,name:'cosmetic'}})
+
+$set -> old and new field
+
+db.products.updateOne({id:100},{$set:{price:20.20,rating:4,name:'cosmetic',id:100}},{upsert:true})
+
+upsert - update or insert
+
+db.products.updateOne({id:100},{$unset:{name:1}})
+
+updateMany  -
+db.products.updateMany({category:'groceries'},{$set:{category:'grocery',MRP:100,brand:'safal'} })
+
+replaceOne -
+db.products.replaceOne({id:100},{price:20.20,id:100,brand:'zara'})
+ 
+rename field name -  db.products.updateOne({id:100},{$rename:{'brand':'category'}})
+
+db.products.deleteOne({id:100})
+db.products.deleteOne({_id:ObjectId("676cff1cde490f0d13a44007")})
+
+db.products.deleteMany({category:'grocery'})
+
+$push -
+db.products.updateOne({_id:ObjectId('676a5a06f9cd0f67526088e6')},{$push:{'tags':'compact'} })
+
+db.products.updateOne({_id:ObjectId('676a5a06f9cd0f67526088e6')},{$push:{'reviews':{rating: 4,comment: "Very Bad experience!", "reviewerName": "Ivan",} } })
+
+db.products.updateOne({_id:ObjectId('676a5a06f9cd0f67526088e6')},{$pop:{'tags':1} })
+db.products.updateOne({_id:ObjectId('676a5a06f9cd0f67526088e6')},{$pop:{'reviews':1} })
+
+=======================================
+getIndexes - Returns an array that holds a list of documents that identify and describe the existing indexes on the collection.
+
+db.products.getIndexes() 
+
+[
+  {
+    "v": 2,
+    "key": {
+      "_id": 1
+    },
+    "name": "_id_"
+  }
+]
+
+==================================
+indexes 
+mongoDB Atlas 
+Aggregation framework
+

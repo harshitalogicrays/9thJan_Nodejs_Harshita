@@ -1,0 +1,44 @@
+import and export json  -
+mongoimport user.json -d dummyjson -c user
+mongoimport post.json -d dummyjson -c post 
+mongoimport products.json -d dummyjson -c products --jsonArray
+mongoexport -d dummyjson -c post -o postexport.json
+mongoexport -d dummyjson -c products -o productsexport.json --jsonArray
+
+db.getCollection('products').find({id:1});
+db.products.find({id:1});
+
+limit() 
+db.products.find().limit(2) //first 2
+db.products.find().limit(0) //all 
+
+
+skip() -
+db.products.find().skip(1) // first document skip
+db.products.find().skip(3).limit(2)
+
+sort() -
+db.products.find().sort({price:1})
+
+db.products.find({},{title:1,price:1,_id:0}).sort({price:1})
+
+db.products.find({},{title:1,price:1,_id:0}).sort({price:-1})
+
+embeded document   - 
+	{address:{}}
+
+db.user.find({'hair.type':'Curly'})
+db.products.find({'dimensions.width':24.16})
+db.user.find({'company.address.city':'San Francisco'})
+
+db.products.find({},{category:1,dimensions:1,_id:0})
+db.products.find({},{category:1,'dimensions.width':1,_id:0})
+
+$all  - The $all operator selects the documents where the value of a field is an array that contains all the specified elements.
+db.products.find({tags:{$all:['beauty','eyeshadow']}},{category:1,tags:1,_id:0})
+
+
+$elemMatch 
+update
+replace  
+remove

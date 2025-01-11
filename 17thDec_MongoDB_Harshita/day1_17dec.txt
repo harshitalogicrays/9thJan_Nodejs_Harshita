@@ -1,0 +1,32 @@
+Website -> major 3 layers 
+1. frontend  -> HTML,CSS and Javascript -> ReactJS
+2. backend -> java, php, python,node, ruby on rails => nodejs
+3. database -> SQL, No SQL => Oracle, MySQL,Sqlite, postgrade
+                        mongoDB, couchDB, Redis etc.
+                    
+    
+    SQL - structured Query Language => DBMS , RDBMS 
+    No SQL - No structured Query Language
+
+    Database Mgmt. System - FoxPro
+    Relational Database Mgmt. System - 
+
+Company Database -
+Employee Table - id , name, exp, hiredate, salary - fixed schema 
+Dept table - id name desc
+Inventory table 
+Payroll table
+
+
+Employee Table - id , name, exp, hiredate, salary deptid
+Dept table - id name desc
+
+schemaless - (flexible schema) - No SQL 
+
+=========================================================
+Vertical scaling and horizontal scaling are two ways to increase the capacity and performance of a system:
+Vertical scaling
+Also known as "scaling up", this involves adding more capacity to an existing server, such as by increasing the CPU, RAM, storage, or network speed. This approach is straightforward, but it has physical limitations.
+
+Horizontal scaling
+Also known as "scaling out", this involves adding more machines to distribute workloads across multiple systems. This approach is more complex, but it's also more flexible, redundant, and resilient. 

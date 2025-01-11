@@ -1,0 +1,56 @@
+enviorment variable -> 
+in system variable ->
+Path -> add new path - C:\Program Files\MongoDB\Server\8.0\bin
+
+mongod --version 
+mongosh -> mongo shell (cmd) start 
+
+mongoDB Server -> auto run 
+mongoDB Client -> mongosh  ->  mongodb://127.0.0.1:27017/
+                 compass -> connect ->  mongodb://127.0.0.1:27017/
+
+mongosh ->
+test> show dbs;
+      show databases;
+
+use mydb => new database 
+db
+db.getName()
+db.dropDatabase() => { ok: 1, dropped: 'mydb' }
+
+///collection 
+use demodb
+demodb>db.createCollection("employee")
+
+demodb>show collections
+
+demodb>db.dept.renameCollection("department",true)
+
+db.department.drop()
+
+db.createCollection("dept",{capped:true,size:2,max:3})
+
+
+db.employee.insertOne({})
+
+db.employee.insertMany([{},{},{}])
+
+db.employee.insertOne({ename:"Smith",exp:"3yrs",salary:40000,dept:"HR"})
+
+db.employee.find()
+
+db.employee.insertOne({ename:"Peter",exp:"13yrs",salary:400000,dept:"IT Sales",hiredate:"Nov 12 2000"})
+
+db.employee.find().count()
+
+db.employee.insertMany([
+    {ename:"Olivia",exp:"4yrs",salary:30000},{_id:ObjectId('6763ca1dd2ded0897479a1b8'), ename:"Walter Bishop",exp:"20yrs",salary:500000,dept:"Manager"},{ename:"Siya",exp:"1yrs",salary:4000,mgrno:1001}
+    ])
+
+db.employee.insertMany([
+    {ename:"Olivia",exp:"4yrs",salary:30000},{_id:ObjectId('6763ca1dd2ded0897479a1b8'), ename:"Walter Bishop",exp:"20yrs",salary:500000,dept:"Manager"},{ename:"Siya",exp:"1yrs",salary:4000,mgrno:1001}
+    ],{ordered:false})
+
+
+======================
+read operations - 

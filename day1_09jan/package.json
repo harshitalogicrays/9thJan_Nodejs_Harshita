@@ -1,0 +1,17 @@
+{
+  "name": "day1_09jan",
+  "version": "1.0.0",
+  "main": "first.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon httpserver.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "description": "",
+  "dependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

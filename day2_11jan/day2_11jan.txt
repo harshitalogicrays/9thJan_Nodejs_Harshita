@@ -1,0 +1,19 @@
+third party package - prompt
+
+==================================================
+env file -> 
+
+npm i dotenv 
+
+core module - path module 
+======================
+core module - url 
+
+fs module -> file system 
+read 
+write 
+append 
+
+event loop 
+events -> we will create our own events 
+

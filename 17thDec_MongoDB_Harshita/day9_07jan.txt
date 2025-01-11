@@ -1,0 +1,334 @@
+date operators - 
+$addFields
+$lookup 
+replication
+sharding 
+
+===============================================================
+
+convert string into date -
+[
+  {$project:{"Date":{$toDate:"$registered"}}}
+]
+
+=====================================================
+fetch year only 
+[
+  {$project:{"year":{$year:{$toDate:"$registered"}}}}
+]
+
+=============================================
+month only 
+[
+  {$project:{"month":{$month:{$toDate:"$registered"}}}}
+]
+=======================================
+how many users regiserted in 2016.
+[
+  {
+    "$project": {
+      "year": { "$year": { "$toDate": "$registered" } }
+    }
+  },
+  {
+    "$match": { "year": 2016 }
+  },
+  {
+    "$count": "usersRegisteredIn2016"
+  }
+]
+
+===================================================
+before 2016 
+[
+  {
+    "$project": {
+      "year": { "$year": { "$toDate": "$registered" } }
+    }
+  },
+  {
+    "$match": { "year": { "$lt": 2016 } }
+  },
+  {
+    "$count": "usersRegisteredBefore2016"
+  }
+]
+===========================================
+fetch time only 
+[
+  {
+    "$project": {
+      "time": {
+        "$dateToString": { "format": "%H:%M:%S", "date": { "$toDate": "$registered" } }
+      }
+    }
+  }
+]
+
+===================================
+display current date -
+[
+  {
+    "$project": {
+      "currentDate": {
+        "$dateToString": { "format": "%Y-%m-%d", "date": new Date() }
+      }
+    }
+  }
+]
+
+=============================
+What is the year of registration for Aurelia Gonzales?
+[{$match:{name:"Aurelia Gonzales"}},
+  {
+    "$project": {
+      "name": 1,
+      "registrationYear": { "$year": { "$toDate": "$registered" } }
+    }
+  }
+]
+
+==========================================
+Which month has the highest number of registrations?
+[
+  {
+    "$project": { "month": { "$month": { "$toDate": "$registered" } } }
+  },
+  {
+    "$group": {
+      "_id": "$month",
+      "count": { "$sum": 1 }
+    }
+  },
+  { "$sort": { "count": -1 } },
+  { "$limit": 1 }
+]
+
+===================================
+Who was the first user to register, and who was the last?
+[
+  {
+    "$project": {
+      "name": 1,
+      "registered": { "$toDate": "$registered" }
+    }
+  },
+  { "$sort": { "registered": 1 } },
+  { "$limit": 1 }
+]
+
+
+[
+  {
+    "$project": {
+      "name": 1,
+      "registered": { "$toDate": "$registered" }
+    }
+  },
+  { "$sort": { "registered": -1 } },
+  { "$limit": 1 }
+]
+
+========================
+On which day of the week do most users register?
+[
+  {
+    "$project": { "dayOfWeek": { "$dayOfWeek": { "$toDate": "$registered" } } }
+  },
+  {
+    "$group": {
+      "_id": "$dayOfWeek",
+      "count": { "$sum": 1 }
+    }
+  },
+  { "$sort": { "count": -1 } }
+]
+==================================
+How many users registered in a leap year?
+[
+  {
+    "$project": {
+      "year": { "$year": { "$toDate": "$registered" } },
+      "name": 1
+    }
+  },
+  {
+    "$match": { "$expr": { "$eq": [{ "$mod": ["$year", 4] }, 0] } }
+  },
+  { "$count": "leapYearRegistrations" }
+]
+
+==================================
+
+
+
+
+==============================================
+fetch months only and display name of month instead of number
+[
+  {
+    $project: {
+      "month": { "$month": { "$toDate": "$registered" } },
+      "name":1
+    }
+  },
+  {
+    $addFields: {
+      "Month":{
+        $arrayElemAt:[[
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+          ],{$subtract:["$month",1]}]
+      } 
+    }
+  }
+
+]
+======================================================
+$lookup - 
+emp table 
+dept table 
+dept table -> PK 
+emp table -> FK
+Emp 
+id(PK)   name   sal     deptid (FK)
+1    aa     222       10 
+2.  aaa      3434     11
+3   4fgf     34242    10 
+
+dept 
+id(PK)  name 
+10   bbb 
+11  jhhg
+12 jklj
+
+joins()
+
+
+
+Retrieve the titles of all books along with the corresponding author’s name.
+[
+  {
+    "$lookup": {
+      "from": "authors",
+      "localField": "author_id",
+      "foreignField": "_id",
+      "as": "author_details"
+    }
+  },
+  {
+    "$unwind": "$author_details"
+  },
+  {
+    "$project": {
+      "title": 1,
+      "author_name": "$author_details.name"
+    }
+  }
+]
+
+==============================================
+Count the Number of Books Written by Each Author
+[
+  {
+    "$lookup": {
+      "from": "authors",
+      "localField": "author_id",
+      "foreignField": "_id",
+      "as": "author_details"
+    }
+  },
+  {
+    "$unwind": "$author_details"
+  },
+  {
+    "$group": {
+      "_id": "$author_details.name",
+      "book_count": { "$sum": 1 }
+    }
+  }
+]
+
+======================================
+ List Books of Authors Born After 1900
+ [
+  {
+    "$lookup": {
+      "from": "authors",
+      "localField": "author_id",
+      "foreignField": "_id",
+      "as": "author_details"
+    }
+  },
+  {
+    "$unwind": "$author_details"
+  },
+  {
+    "$match": {
+      "author_details.birth_year": { "$gt": 1900 }
+    }
+  },
+  {
+    "$project": {
+      "title": 1,
+      "author_name": "$author_details.name"
+    }
+  }
+]
+
+==================================================
+Get Books by Authors of Specific Genre
+[
+  {
+    "$match": {
+      "genre": "Classic"
+    }
+  },
+  {
+    "$lookup": {
+      "from": "authors",
+      "localField": "author_id",
+      "foreignField": "_id",
+      "as": "author_details"
+    }
+  },
+  {
+    "$unwind": "$author_details"
+  },
+  {
+    "$project": {
+      "title": 1,
+      "author_name": "$author_details.name"
+    }
+  }
+]
+
+=====================================
+Find all books written by "Harper Lee."
+[
+  {
+    "$lookup": {
+      "from": "authors",
+      "localField": "author_id",
+      "foreignField": "_id",
+      "as": "author_info"
+    }
+  },
+  {
+    "$unwind": "$author_info"
+  },
+  {
+    "$match": {
+      "author_info.name": "Harper Lee"
+    }
+  },
+  {
+    "$project": {
+      "title": 1,
+      "author_name": "$author_info.name"
+    }
+  }
+]
+
+==================================================
+

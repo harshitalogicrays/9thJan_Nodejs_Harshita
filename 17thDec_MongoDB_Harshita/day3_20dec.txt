@@ -1,0 +1,66 @@
+Read operations - 
+db.collectionname.find() or db.collectionname.find({}) 
+
+db.employee.findOne() - first document 
+
+db.employee.find({filter})
+db.employee.find({ename:"peter"})
+db.employee.find({salary: {$eq:30000} })
+
+db.employee.find({salary:{$in:[4000,30000,1000]}})
+db.employee.find({exp:{$in:['3yrs','5yrs']}})
+db.employee.find({exp:{$nin:['3yrs','5yrs']}})
+
+db.employee.find({ename:"peter",salary: {$gte:3000}})
+
+ db.employee.find({ename:"Peter",exp:"14yrs"})
+
+ Logical Operator - 
+ AND operator - 
+ db.employee.find({ $and: [{cond1},{cond2}] })
+
+ db.employee.find({$and:[{ename:"Peter"},{exp:"14yrs"}]})
+ db.employee.find({$or:[{ename:"Peter"},{exp:"14yrs"}]})
+
+ db.employee.find({salary: {$not:{$eq:30000}} })
+
+//////////////////////////////////////
+
+db.employee.find({filter},{projection})
+
+  db.employee.find({$and:[{ename:"Peter"},{exp:"13yrs"}]} ,{ename:1,salary:true,exp:true})
+
+  db.employee.find({$and:[{ename:"Peter"},{exp:"13yrs"}]} ,{ename:1,salary:true,exp:1,_id:0})
+
+  db.employee.find({$and:[{ename:"Peter"},{exp:"13yrs"}]} ,{ename:1,salary:true,exp:0,_id:0}) => MongoServerError[Location31254]: Cannot do exclusion on field exp in inclusion projection
+db.employee.find({$and:[{ename:"Peter"},{exp:"13yrs"}]} ,{ename:1,salary:true,_id:0})
+
+
+db.employee.find({} ,{ename:1,salary:true,_id:0})
+
+
+db.employee.distinct('salary') => returns an array of unique/distinct salary of employees
+
+===========================================================================
+
+elements operator -  $exists , $size, $type 
+
+
+ db.employee.find({dept:{$exists:true}} ,{ename:1,salary:true,dept:true,_id:0})
+
+ db.employee.find({exp:{$type:'string'}} ,{ename:1,salary:true,exp:true,_id:0})
+
+ db.employee.find({exp:{$type:'number'}} ,{ename:1,salary:true,exp:true,_id:0})
+
+ db.employee.find({interest:{$exists:true},interest:{$size:2}},{ename:1,exp:1,salary:1,interest:1,_id:0})
+
+ db.employee.find({interest:{$size:3}},{ename:1,exp:1,salary:1,interest:1,_id:0})
+
+ =================================================================================
+
+ import and export - database tools 
+ json file -> mongodb (import)
+ mongodb --> json file (export)
+
+ update , delete and rename 
+ collection - cap (insertion )

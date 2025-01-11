@@ -1,0 +1,127 @@
+
+db.users.aggregate([
+    {$match: { gender:'female'}}
+])
+
+
+[{
+    $match: {
+      gender: "female",isActive:true
+    } },
+]
+====================
+[
+  {
+    $match: { gender: "female"},
+  },
+  {$count: 'Total Users '}  
+]
+===================
+[
+  {
+    $match: { gender: "female",
+            isActive:true} },
+  {$count: 'Total Users '}
+  
+]
+=============================================
+[{
+    $match: {
+      gender: "female",isActive: true},
+  },
+  {$project: { name:1,age:1,_id:0}}
+]
+===============================================
+Total no of user whose company country is "USA"
+ [{
+    $match: {
+      'company.location.country':"USA"
+    } 
+  },
+   {$count:"Total USA users"} 
+]
+==============================================
+[{ $sort: { age: -1, }}]
+
+=============================================
+find the oldest user.
+[
+  {
+    $sort: {  age: -1,}
+  },
+  {$limit:1}
+]
+=============================
+find the youngest user.
+[
+  {
+    $sort: {
+      age: 1,
+    }
+  },
+  {$limit:1}
+]
+=================================
+find the name of second youngest user.
+ [{
+    $sort: {  age: 1}
+  },
+  {$skip:1},
+  {$limit:1},
+  {$project:{name:1,_id:0}}
+]
+==========================================
+[
+  {$sample: {
+    size: 3
+  }}
+]
+===============================================
+How many users have 'enim' as one of the tags.
+[
+  {$match:{
+    tags:'enim'
+  }},
+  {$count:"tags"}
+]
+===========================================
+name and age of the users who are inactive and have "id" as their tag.
+
+[
+  {$match:{
+    tags:'id',
+	isActive:false
+  }},
+	{$project:{name:1,age:1,_id:0}}
+]
+
+
+=======================================
+How many users have "est" as the second tag in their tags array.
+[
+  {$match:{
+    "tags.1":'id'
+  }},
+  {$count:"tags"}
+]
+
+1 means in tags array on index 1 (2nd element)
+==================================================
+
+find users who have both enim and id as their tags.
+
+[
+  {$match:{
+    "tags":{$all:['enim','id']}
+  }},
+  {$count:"tags"}
+]
+===========================================
+top 4 users Who has registered most recently.
+[
+  {$sort:{
+    registered:-1
+  }},
+  {$limit:4}
+]
+=========================================

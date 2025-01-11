@@ -1,0 +1,61 @@
+M - mongoDB (NoSQL) 
+E - expressjs (web framework of nodejs) 
+R -  ReactJS 
+N - nodejs 
+
+what is nodejs = runtime environment to execute javascript outside the browser.
+We can write server side code using javascript.
+
+2010 Ryan Dhal => 
+exe file => written in c++ and built in top of v8 engine 
+v8 - google chrome (fastest one)
+
+Asynchronous 
+single thread
+event driven 
+non blocking 
+
+Why nodejs??
+
+-==================
+Modules - 
+1. core Modules -  comes with nodejs installation (http, fs, url, path, https, crypto, dns, os etc. )
+2. third party - bootstrap, prompt, express, cors etc. 
+    npm i bootstrap 
+3. user defined modules 
+
+
+Type = "commonjs" => module.exports 
+                    require()
+       "module" => export or export defult 
+       import 
+
+=======================
+NPM - 
+local install -> means within the project only => npm i bootstrap 
+global install -> means in any nodejs project => npm i nodemon -g
+
+cmd -> run as administrator -> global install possible 
+
+npm update 
+
+npm init --y => package.json 
+
+npm i bootstrap --save-dev  => dev depenedencies
+
+===================================================================
+
+CORE Module  - 
+1. http module 
+create our own server 
+
+live server 
+react development 
+
+
+java -> tomcat server 
+php -> apache server 
+
+
+client ---> server 
+request and response
