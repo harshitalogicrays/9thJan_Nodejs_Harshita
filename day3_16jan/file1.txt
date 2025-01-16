@@ -1,0 +1,4 @@
+Welcome to LRAhello good morning
+ good bye
+Wish you all a Very Happy New Year
+Stay Happy and Healthywrite using open() funtion
