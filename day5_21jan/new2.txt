@@ -1,0 +1,36 @@
+stream and buffer 
+stream -  sequence of data moved from one point to other.
+buffer  - memory
+200mb
+
+SF ----> Read buffer --->readfile -------> writefile -----> write buffer -----> DF
+         (chunk by chunk)
+
+chunk -  data store in the memory ---> use it ---> free from memory 
+
+efficient data processing
+
+Types -
+1. readable stream - from where we read data chunk by chunk 
+2. writeable stream - to which we write data chunk by chunk
+3. transform stream -  modify and transform data as it is read or write 
+                        zlib, uppercase
+4. duplex stream (read and write both at the same time) - web socket 
+
+
+readable stream -  request stream , readfile 
+                    events  -  data , end 
+                    methods - read , pipe 
+
+writeable -  response stream , writefile 
+            events  -  drain , finish 
+            method - write , end
+
+
+
+single thread 
+nodejs architecture 
+event loop 
+events            
+
+custom event -> events module 
