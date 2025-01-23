@@ -1,0 +1,24 @@
+hello
+welcome to LRA
+======================================
+http , path, url, fs, stream 
+events module - core module 
+
+
+Event Emitter --------> Event Listener -----> event handler  
+
+event Emitter => It is responsible to emit (fire/trigger) the events.
+something imp happen in the app.
+request to the server , timer expriy , file read finish 
+
+event Listener - event is picked up by Listener
+listen event and going to wait for event to happen
+
+event handler - function 
+
+DNS and OS -
+==============================================
+nodejs architecture - event loop and thread pool 
+nodejs working 
+
+xampp server  - MySQL  
