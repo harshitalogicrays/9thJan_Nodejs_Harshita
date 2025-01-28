@@ -1,0 +1,17 @@
+nodejs architecture - event loop and thread pool 
+nodejs working 
+
+process -  program under execution
+thread -  smallest unit of process 
+
+15ms 
+15ms ---> 1 thread 
+
+5ms - 1 thread
+5ms  - 2
+5ms  - 3
+========================================
+MySQL -
+connect nodejs with mysql 
+========================================
+express 

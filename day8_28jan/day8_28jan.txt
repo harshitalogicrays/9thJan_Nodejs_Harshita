@@ -1,0 +1,26 @@
+CREATE TABLE `dummy`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE);
+
+  SELECT * FROM dummy.users;
+
+
+
+  insert - INSERT INTO users (`username`, `email`, `password`) VALUES ('harshita', 'harshita@gmail.com', 'harshita123');
+
+  select -  SELECT * FROM users;
+  update - UPDATE users SET `password` = 'harshita1234' WHERE (`id` = '1');
+
+  delete - delete from users where id=2;
+
+  1. npm i mysql2 
+  2. db connection 
+
+  ==================================================================
+
+  Tuesday - 4th feb => 9:30AM to 10:30AM
+  expressjs 
