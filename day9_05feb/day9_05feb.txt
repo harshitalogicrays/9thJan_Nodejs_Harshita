@@ -1,0 +1,27 @@
+expressjs  - web framework of nodejs 
+
+Node.js frameworks :
+Express.js
+Koa.js 
+Meteor.js 
+Nest.js 
+Hapi.js 
+Sails.js 
+Adonis.js 
+LoopBack 
+Total.js 
+Restify 
+
+
+=============================
+GET 
+POST 
+PUT 
+DELETE 
+
+http://localhost:1000/product?name=eee&price=11 
+?name=eee&price=11  => query string
+
+API testing tool - using them we can check our REST API 
+POSTMAN 
+get - we can access in the browser 

@@ -2,6 +2,7 @@ import http from 'http'
 import 'dotenv/config'
 const PORT  = process.env.PORT || 1000
 const server = http.createServer((req,res)=>{
+    res.write("")
     res.end("hello from server")
 })
 
