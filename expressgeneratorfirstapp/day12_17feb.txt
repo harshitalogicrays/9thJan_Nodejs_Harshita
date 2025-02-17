@@ -1,0 +1,6 @@
+templating engine -
+instead of HTML page express uses their own templating engine for performance optimization.  
+
+can use variables 
+
+{{title}}
