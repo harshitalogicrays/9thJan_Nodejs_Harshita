@@ -1,0 +1,27 @@
+<h1 class="text-primary">{{address}}</h1>
+<p>Welcome to {{title}}</p>
+{{#if isActive}} <h2>User is Active</h2>{{/if}}
+
+{{#if (isEqual title)}}
+    <h2>ok</h2>
+{{else}}
+    <h2>Not ok</h2>
+{{/if}}
+
+{{#each names}}
+    <h4>{{this}}</h4>
+{{else}}
+    <h4>Not data found</h4>
+{{/each}}
+
+{{#each names}} 
+    {{@index}}: {{this}} 
+{{/each}}
+
+{{#each fullname}} 
+<h5>{{@key}}: {{this}}</h5> 
+{{/each}}
+
+{{#with fullname}}
+{{fname}} {{lname}}
+{{/with}}

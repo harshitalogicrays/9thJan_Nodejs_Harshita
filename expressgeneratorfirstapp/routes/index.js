@@ -1,9 +1,16 @@
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+const router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Nodejs' });
+/* http://localhost:1000 */
+router.get('/', (req, res, next) => {
+  // res.send("hello from server")
+  // res.json({msg:"ertlkjekjt"})
+  // res.render("index.jade",{title:"Express"})
+  
+  res.render("index",{title:"LRA1",address:"Ahmedabad" , isActive:true , names:["aaa","bbb","ccc","ddd"],
+    fullname:{fname:"Ram",lname:"Sharma"}
+  })
+
 });
 
-module.exports = router;
+export default router
