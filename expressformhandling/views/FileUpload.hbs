@@ -1,11 +1,46 @@
-<div class="container mt-5 col-6">
+{{!-- <div class="container mt-5 col-6">
     <h1>File Upload (Multer)</h1>
-    <form action="" method="post">
+    <form action="/file" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="" class="form-label">choose File</label>
-            <input  type="file"  name="image"  class="form-control"/>
-        </div>
-        <button type="submit" class="btn btn-primary"> Submit  </button>
+            <input  type="file"  name="image"  class="form-control"/> </div>
+        <button type="submit" class="btn btn-primary"> Submit  </button>   </form><br/>
+
+{{#if err}}
+    <span class="text-danger">{{err}}</span>
+{{/if}}
+
+{{#if msg}}
+    <h1>{{msg}}</h1>
+{{/if}}
+
+{{#if file}}
+   <img src={{file}} height="200px" width="200px">
+{{/if}}
+</div> --}}
+
+
+
+
+<div class="container mt-5 col-6">
+    <h1>File Upload multiple (Multer)</h1>
+    <form action="/file" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="" class="form-label">choose File</label>
+            <input  type="file"  name="images"  class="form-control" multiple/> </div>
+        <button type="submit" class="btn btn-primary"> Submit  </button>   </form><br/>
         
-    </form>
+{{#if err}}
+    <span class="text-danger">{{err}}</span>
+{{/if}}
+
+{{#if msg}}
+    <h1>{{msg}}</h1>
+{{/if}}
+
+{{#if files}}
+    {{#each files}}
+        <img src={{this}} height="200px" width="200px">
+    {{/each}}
+{{/if}}
 </div>
