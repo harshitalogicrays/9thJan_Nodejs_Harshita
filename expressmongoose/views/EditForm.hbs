@@ -1,0 +1,23 @@
+<div class="container mt-5 col-6">
+    <h1>{{title}}</h1>
+    <form action="/form/update/{{data._id}}" method="post">
+        <div class="mb-3">
+            <label for="" class="form-label">username</label>
+            <input  type="text"  name="username"  class="form-control"  value="{{data.username}}"    >
+        </div>
+         <div class="mb-3">
+            <label for="" class="form-label">email</label>
+            <input  type="text"  name="email"  class="form-control"  value="{{data.email}}"/>
+        </div>
+         <div class="mb-3">
+            <label for="" class="form-label">password</label>
+            <input  type="password"  name="password"  class="form-control"  value="{{data.password}}"/>
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">confirm password</label>
+            <input  type="password"  name="cpassword"  class="form-control"  value="{{data.cpassword}}"/>
+        </div>
+        <button type="submit" class="btn btn-primary"> Update  </button>
+        
+    </form>
+</div>

@@ -1,0 +1,29 @@
+mongoDB - 
+
+ODM  - Object Data Modeling => mongoose 
+
+schema 
+validations 
+built in functions 
+
+Mongoose is a JavaScript object-oriented programming library that creates a connection between MongoDB and the Node.js JavaScript runtime environment.[1][2] It provides a straightforward, schema-based solution to model application data. Mongoose includes built-in type casting, validation, query building, business logic hooks, and more, out of the box.
+
+
+MVC -
+view - hbs templating engine 
+controller - business logic based on routes 
+
+view ---> request ----> controller 
+    <--- response <----
+
+
+view ---> request ----> controller ------> model (DB) 
+    <--- response <----            <-----
+
+1. DB connection -
+2. create schema 
+
+
+Tuesday - 10:00AM to 11:30AM 
+redirect()
+socket.io -> chat app 
