@@ -24,7 +24,7 @@ export const postformdata = async(req,res)=>{
 
 export const displayFormData = async(req,res)=>{
     try{      
-        const response = await Form.find()
+        const response = await Form.find().select('email').select('username').exec()
         res.render('Displayformdata',{title:"Users list" , data:{...response}})
     }
     catch(err){
@@ -39,8 +39,7 @@ export const deleteData =async(req,res)=>{
     const id = req.params.id
     try{
         await Form.findByIdAndDelete(id)
-        const response = await Form.find()
-        res.render('Displayformdata',{title:"Users list" , data:{...response}})
+       res.redirect('/form/display')
     }
     catch(err){  res.status(400).send({
         status:"Fail",
@@ -64,8 +63,9 @@ export const updateData =async(req,res)=>{
     const id = req.params.id
     try{
         await Form.updateOne({_id:id},{$set:{...req.body}})
-        const response = await Form.find()
-        res.render('Displayformdata',{title:"Users list" , data:{...response}})
+        // const response = await Form.find()
+        // res.render('Displayformdata',{title:"Users list" , data:{...response}})
+        res.redirect('/form/display')
     }
     catch(err){  res.status(400).send({
         status:"Fail",
