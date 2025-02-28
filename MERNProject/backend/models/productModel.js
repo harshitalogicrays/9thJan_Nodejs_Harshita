@@ -10,7 +10,7 @@ const productSchema = mongoose.Schema({
     },
     description:{type:String},
     price:{type:Number , required:true},
-    countInStock:{type:Number , required:true},
+    countInStock:{type:Number , required:true,default:0},
     quantity:{type:Number , required:true}
 },{timestamps:true})
 
