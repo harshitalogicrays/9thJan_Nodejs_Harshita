@@ -28,5 +28,5 @@ const ordersSchema = mongoose.Schema({
     status:{type:String , required:true},
 },{timestamps:true})
 
-const Orders = mongoose.model("orders",ordersSchema)
+const Order = mongoose.model("orders",ordersSchema)
 export default Orders
